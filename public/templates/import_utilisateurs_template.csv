@@ -1,0 +1,4 @@
+sep=;
+username;email;first_name;last_name;profiles;matricule
+jdupont;jean.dupont@example.com;Jean;Dupont;profile.bo.structure-admin;MAT001
+mmartin;marie.martin@example.com;Marie;Martin;profile.bo.structure-controller;MAT002

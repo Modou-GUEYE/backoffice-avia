@@ -1,0 +1,44 @@
+image: node:20-alpine
+
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+before_script:
+  - npm ci
+
+build-job:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+lint-job:
+  stage: test
+  script:
+    - npm run lint
+
+unit-test-job:
+  stage: test
+  script:
+    - npm run test
+
+deploy-job:
+  stage: deploy
+  when: manual
+  script:
+    - echo "Deployment step is not configured in this project yet."
+  environment:
+    name: production
+    url: https://example.com

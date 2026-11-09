@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Modèle d'opérations personnalisable",
+    "description": "Modèle OpenAPI pour l'import d'opérations d'intégration (calcul des frais et contrôle de plafond)",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/fees/calculate": {
+      "get": {
+        "operationId": "calculate_fee",
+        "summary": "Calculer les frais",
+        "description": "Calcule les frais applicables.",
+        "parameters": [
+          {
+            "name": "service_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "structure_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Frais calculés",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": ["applied_fee"],
+                      "properties": {
+                        "applied_fee": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/limits/check": {
+      "get": {
+        "operationId": "check_limit",
+        "summary": "Contrôler les plafonds",
+        "description": "Vérifie si une transaction respecte les plafonds définis.",
+        "parameters": [
+          {
+            "name": "service_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "structure_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plafond vérifié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "required": ["allowed"],
+                      "properties": {
+                        "allowed": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

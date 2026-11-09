@@ -1,0 +1,29 @@
+{
+  "branding": {
+    "id": "default",
+    "entityName": "BACK-OFFICE AVIA V2",
+    "logoUrl": "/logo_AVIA.png",
+    "faviconUrl": "/logo_AVIA.png",
+    "apsfdLogoUrl": "",
+    "primaryColor": "220 88% 42%",
+    "secondaryColor": "220 14% 96%",
+    "accentColor": "220 88% 52%",
+    "sidebarColor": "220 75% 15%",
+    "fontFamily": "Inter",
+    "loginBgUrl": "",
+    "tagline": "Plateforme de gestion"
+  },
+  "features": {
+    "showStructures": true,
+    "showAgences": true,
+    "showCaisses": true,
+    "showProduits": true,
+    "showPackages": true,
+    "showEnsembleAutonome": true,
+    "showUtilisateurs": true,
+    "showParametres": true,
+    "showDashboard": true,
+    "showPartenaires": true,
+    "showTracking": true
+  }
+}
